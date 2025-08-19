@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\TodoController;
+
+Route::get('/', [TodoController::class, 'index']);
+Route::post('/todos', [TodoController::class, 'store']);
+Route::get('/todos/{todo}/toggle', [TodoController::class, 'toggle']);
+Route::delete('/todos/{todo}', [TodoController::class, 'destroy']);
+
